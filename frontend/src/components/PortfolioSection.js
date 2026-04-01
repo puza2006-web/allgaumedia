@@ -45,27 +45,29 @@ const PortfolioSection = ({ showFull = false }) => {
       data-testid="portfolio-section"
     >
       <div className="container mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <span 
-            className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
-            data-testid="portfolio-badge"
-          >
-            {t('portfolio.badge')}
-          </span>
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
-            data-testid="portfolio-title"
-          >
-            {t('portfolio.title')}
-          </h2>
-          <p 
-            className="text-zinc-400 max-w-2xl mx-auto"
-            data-testid="portfolio-subtitle"
-          >
-            {t('portfolio.subtitle')}
-          </p>
-        </div>
+        {/* Header - only show if not on dedicated page */}
+        {!showFull && (
+          <div className="text-center mb-12">
+            <span 
+              className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
+              data-testid="portfolio-badge"
+            >
+              {t('portfolio.badge')}
+            </span>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
+              data-testid="portfolio-title"
+            >
+              {t('portfolio.title')}
+            </h2>
+            <p 
+              className="text-zinc-400 max-w-2xl mx-auto"
+              data-testid="portfolio-subtitle"
+            >
+              {t('portfolio.subtitle')}
+            </p>
+          </div>
+        )}
 
         {/* Categories Filter */}
         {showFull && (

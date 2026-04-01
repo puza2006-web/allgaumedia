@@ -46,7 +46,7 @@ const HeroSection = () => {
           <img 
             src={LOGO_WHITE} 
             alt="Allgau Media" 
-            className="h-16 md:h-24 lg:h-28 mx-auto"
+            className="h-32 md:h-48 lg:h-56 mx-auto"
             data-testid="hero-logo"
           />
         </div>

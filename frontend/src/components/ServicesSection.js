@@ -44,27 +44,29 @@ const ServicesSection = ({ showFull = false }) => {
       data-testid="services-section"
     >
       <div className="container mx-auto px-6 md:px-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span 
-            className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
-            data-testid="services-badge"
-          >
-            {t('services.badge')}
-          </span>
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
-            data-testid="services-title"
-          >
-            {t('services.title')}
-          </h2>
-          <p 
-            className="text-zinc-400 max-w-2xl mx-auto"
-            data-testid="services-subtitle"
-          >
-            {t('services.subtitle')}
-          </p>
-        </div>
+        {/* Header - only show if not on dedicated page */}
+        {!showFull && (
+          <div className="text-center mb-16">
+            <span 
+              className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
+              data-testid="services-badge"
+            >
+              {t('services.badge')}
+            </span>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
+              data-testid="services-title"
+            >
+              {t('services.title')}
+            </h2>
+            <p 
+              className="text-zinc-400 max-w-2xl mx-auto"
+              data-testid="services-subtitle"
+            >
+              {t('services.subtitle')}
+            </p>
+          </div>
+        )}
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

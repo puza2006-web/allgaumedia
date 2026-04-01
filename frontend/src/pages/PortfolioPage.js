@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '../context/LanguageContext';
+import PageHero from '../components/PageHero';
 import PortfolioSection from '../components/PortfolioSection';
 import ContactSection from '../components/ContactSection';
 
@@ -27,23 +28,12 @@ const PortfolioPage = () => {
       </Helmet>
 
       <main data-testid="portfolio-page">
-        {/* Hero */}
-        <section className="pt-32 pb-16 bg-[#050505]">
-          <div className="container mx-auto px-6 md:px-12">
-            <span className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block">
-              {t('portfolio.badge')}
-            </span>
-            <h1 
-              className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tighter text-white mb-6"
-              data-testid="portfolio-page-title"
-            >
-              {t('portfolio.title')}
-            </h1>
-            <p className="text-xl text-zinc-400 max-w-2xl">
-              {t('portfolio.subtitle')}
-            </p>
-          </div>
-        </section>
+        {/* Hero with Video Background */}
+        <PageHero 
+          badge={t('portfolio.badge')}
+          title={t('portfolio.title')}
+          subtitle={t('portfolio.subtitle')}
+        />
 
         {/* Portfolio with full grid and filters */}
         <PortfolioSection showFull={true} />

@@ -182,7 +182,7 @@ async def seed_portfolio():
                 "description": "Dynamischer Werbespot für ein lokales Fitnessstudio in Memmingen",
                 "description_en": "Dynamic commercial for a local fitness studio in Memmingen",
                 "category": "fitness",
-                "thumbnail": "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "thumbnail": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
@@ -193,7 +193,7 @@ async def seed_portfolio():
                 "description": "Professionelle Unternehmensvorstellung für ein Technologieunternehmen",
                 "description_en": "Professional corporate introduction for a technology company",
                 "category": "business",
-                "thumbnail": "https://images.unsplash.com/photo-1773966071293-bea3d7646fd1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "thumbnail": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
@@ -204,7 +204,7 @@ async def seed_portfolio():
                 "description": "Kreative Social Media Videos für Instagram und TikTok",
                 "description_en": "Creative social media videos for Instagram and TikTok",
                 "category": "social-media",
-                "thumbnail": "https://images.unsplash.com/photo-1760670399462-f5e479452c27?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "thumbnail": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
@@ -215,7 +215,7 @@ async def seed_portfolio():
                 "description": "Hochwertiges Produktvideo für E-Commerce",
                 "description_en": "High-quality product video for e-commerce",
                 "category": "business",
-                "thumbnail": "https://images.unsplash.com/photo-1737737351943-82e01f866e53?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
@@ -226,7 +226,7 @@ async def seed_portfolio():
                 "description": "Entspannende Atmosphäre eingefangen für ein Yoga Studio",
                 "description_en": "Relaxing atmosphere captured for a yoga studio",
                 "category": "fitness",
-                "thumbnail": "https://images.unsplash.com/photo-1758520145147-c30bc656f314?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMG9mZmljZSUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc2fDA&ixlib=rb-4.1.0&q=85",
+                "thumbnail": "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
@@ -237,7 +237,7 @@ async def seed_portfolio():
                 "description": "Appetitanregende Videos für ein Restaurant im Allgäu",
                 "description_en": "Appetizing videos for a restaurant in the Allgäu region",
                 "category": "social-media",
-                "thumbnail": "https://images.pexels.com/photos/36389508/pexels-photo-36389508.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "thumbnail": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
                 "video_url": None,
                 "created_at": datetime.now(timezone.utc).isoformat()
             }
