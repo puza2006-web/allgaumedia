@@ -11,6 +11,7 @@ const ServicesSection = ({ showFull = false }) => {
   const services = [
     {
       id: 'videoproduction',
+      path: '/videoproduction',
       icon: Video,
       title: t('services.videoproduction.title'),
       description: t('services.videoproduction.description'),
@@ -18,6 +19,7 @@ const ServicesSection = ({ showFull = false }) => {
     },
     {
       id: 'videoediting',
+      path: '/video-editing',
       icon: Film,
       title: t('services.videoediting.title'),
       description: t('services.videoediting.description'),
@@ -25,6 +27,7 @@ const ServicesSection = ({ showFull = false }) => {
     },
     {
       id: 'webdesign',
+      path: '/webdesign-development',
       icon: Code,
       title: t('services.webdesign.title'),
       description: t('services.webdesign.description'),
@@ -32,6 +35,7 @@ const ServicesSection = ({ showFull = false }) => {
     },
     {
       id: 'hosting',
+      path: '/hosting-domains',
       icon: Server,
       title: t('services.hosting.title'),
       description: t('services.hosting.description'),
@@ -93,10 +97,11 @@ const ServicesSection = ({ showFull = false }) => {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div
+              <Link
                 key={service.id}
+                to={service.path}
                 id={service.id}
-                className="bg-zinc-950 border border-white/10 p-8 md:p-12 card-hover group"
+                className="bg-zinc-950 border border-white/10 p-8 md:p-12 card-hover group block"
                 data-testid={`service-card-${service.id}`}
               >
                 {/* Icon */}
@@ -127,15 +132,14 @@ const ServicesSection = ({ showFull = false }) => {
                 )}
 
                 {/* CTA */}
-                <Link
-                  to={showFull ? '/#contact' : '/services'}
+                <span
                   className="inline-flex items-center text-white text-sm uppercase tracking-wider group/link"
                   data-testid={`service-cta-${service.id}`}
                 >
                   <span>{t('services.cta')}</span>
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </Link>
             );
           })}
         </div>

@@ -11,6 +11,10 @@ import PortfolioPage from "./pages/PortfolioPage";
 import AdminPage from "./pages/AdminPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import ImprintPage from "./pages/ImprintPage";
+import VideoproductionPage from "./pages/VideoproductionPage";
+import VideoEditingPage from "./pages/VideoEditingPage";
+import WebdesignPage from "./pages/WebdesignPage";
+import HostingPage from "./pages/HostingPage";
 import "./App.css";
 
 // Scroll to top on route change
@@ -74,6 +78,38 @@ function App() {
               element={
                 <Layout>
                   <ServicesPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/videoproduction"
+              element={
+                <Layout>
+                  <VideoproductionPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/video-editing"
+              element={
+                <Layout>
+                  <VideoEditingPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/webdesign-development"
+              element={
+                <Layout>
+                  <WebdesignPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/hosting-domains"
+              element={
+                <Layout>
+                  <HostingPage />
                 </Layout>
               }
             />
