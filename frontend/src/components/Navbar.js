@@ -8,7 +8,7 @@ const LOGO_WHITE = "https://customer-assets.emergentagent.com/job_allgau-media-p
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, toggleLanguage, t } = useLanguage();
+  const { language, cycleLanguage, getCurrentLanguageLabel, t } = useLanguage();
   const location = useLocation();
 
   useEffect(() => {
@@ -81,12 +81,12 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             {/* Language Switcher */}
             <button
-              onClick={toggleLanguage}
+              onClick={cycleLanguage}
               className="flex items-center space-x-2 text-sm text-zinc-300 hover:text-white transition-colors"
               data-testid="language-switcher"
             >
               <Globe className="w-4 h-4" />
-              <span className="uppercase font-medium">{language}</span>
+              <span className="uppercase font-medium">{getCurrentLanguageLabel()}</span>
             </button>
 
             {/* CTA Button */}
@@ -103,11 +103,12 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
             <button
-              onClick={toggleLanguage}
-              className="text-zinc-300 hover:text-white transition-colors"
+              onClick={cycleLanguage}
+              className="text-zinc-300 hover:text-white transition-colors flex items-center space-x-1"
               data-testid="mobile-language-switcher"
             >
               <Globe className="w-5 h-5" />
+              <span className="text-xs font-medium">{getCurrentLanguageLabel()}</span>
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

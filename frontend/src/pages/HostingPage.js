@@ -72,6 +72,38 @@ const HostingPage = () => {
       ],
       cta: 'Request Hosting',
       ctaText: 'Need reliable hosting? We have the right solution for you.'
+    },
+    sr: {
+      title: 'Pouzdani Hosting & Domene',
+      subtitle: 'Tehnička osnova za vaš online uspjeh',
+      intro: 'Brinemo se o tehničkoj infrastrukturi vaše web stranice: brzi hosting, sigurne domene i profesionalna podrška. Tako da se vi možete fokusirati na svoje poslovanje.',
+      sections: [
+        {
+          title: 'Šta nudimo',
+          text: 'Naša hosting usluga uključuje moćne servere, SSL certifikate, redovne backup-e i proaktivno održavanje. Preuzimamo kompletnu tehničku brigu o vašoj web stranici: ažuriranja, sigurnost i optimizaciju performansi. Dodatno nudimo registraciju domena i email hosting iz jednog izvora.',
+          image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80'
+        },
+        {
+          title: 'Za koga je namijenjeno?',
+          text: 'Naš hosting je pogodan za sve koji trebaju pouzdanu i sigurnu online prisutnost. Posebno za firme koje nemaju vlastiti IT odjel i ne žele se baviti tehničkim detaljima. Mi smo vaš partner za sve tehničko u pozadini.',
+          image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80'
+        },
+        {
+          title: 'Vaše prednosti',
+          text: 'Sa našim hostingom imate jedan kontakt za sva tehnička pitanja. Bez prekida, bez sigurnosnih propusta, bez glavobolja. Garantujemo brzo učitavanje, maksimalnu dostupnost i trenutnu podršku kada se pojave problemi. Vaš biznis radi – mi se brinemo o ostatku.',
+          image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'
+        }
+      ],
+      features: [
+        'Brzi SSD Hosting',
+        'SSL certifikati uključeni',
+        'Dnevni backup-i',
+        'Registracija domena',
+        'Email Hosting',
+        '24/7 Monitoring'
+      ],
+      cta: 'Zatražite hosting',
+      ctaText: 'Trebate pouzdan hosting? Imamo pravo rješenje za vas.'
     }
   };
 

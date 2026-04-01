@@ -72,6 +72,38 @@ const WebdesignPage = () => {
       ],
       cta: 'Request a Website',
       ctaText: 'Ready for your new web presence? Let\'s plan your website together.'
+    },
+    sr: {
+      title: 'Moderni Web Dizajn & Razvoj',
+      subtitle: 'Web stranice koje ubjeđuju i konvertuju',
+      intro: 'Dizajniramo i razvijamo moderne, responzivne web stranice koje ne samo da dobro izgledaju, već donose i rezultate. Od landing stranica do kompletne web prezentacije.',
+      sections: [
+        {
+          title: 'Šta nudimo',
+          text: 'Naša usluga web dizajna uključuje kompletan paket: UX/UI dizajn, razvoj, SEO optimizaciju i upravljanje sadržajem. Kreiramo web stranice koje savršeno funkcionišu na svim uređajima i optimizirane su za pretraživače. Od WordPressa do prilagođenih rješenja – pronalazimo pravu tehnologiju za vaš projekat.',
+          image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80'
+        },
+        {
+          title: 'Za koga je namijenjeno?',
+          text: 'Naš web dizajn je namijenjen firmama koje žele izgraditi ili modernizovati svoju online prisutnost. Bilo da ste lokalna prodavnica, rastući startup ili etablirana firma – profesionalna web stranica je danas neophodna za vaš poslovni uspjeh.',
+          image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&q=80'
+        },
+        {
+          title: 'Vaše prednosti',
+          text: 'Profesionalna web stranica je vaša digitalna vizit-karta i često prvi kontakt sa potencijalnim klijentima. Pobrinuemo se da taj utisak uvjeri: brzo učitavanje, intuitivna navigacija, privlačan dizajn i jasni pozivi na akciju. Rezultat: više posjetilaca, više upita, više prihoda.',
+          image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'
+        }
+      ],
+      features: [
+        'Responzivni Web Dizajn',
+        'UX/UI Dizajn',
+        'SEO Optimizacija',
+        'WordPress & CMS',
+        'E-Commerce rješenja',
+        'Landing stranice'
+      ],
+      cta: 'Zatražite web stranicu',
+      ctaText: 'Spremni za vašu novu web prezentaciju? Planirajmo zajedno vašu web stranicu.'
     }
   };
 

@@ -35,7 +35,7 @@ const PageHero = ({ title, subtitle, badge }) => {
           <img 
             src={LOGO_WHITE} 
             alt="Allgau Media" 
-            className="h-32 md:h-40 lg:h-48 mx-auto"
+            className="h-20 sm:h-32 md:h-40 lg:h-48 w-auto max-w-[90vw] mx-auto object-contain"
             data-testid="page-hero-logo"
           />
         </div>

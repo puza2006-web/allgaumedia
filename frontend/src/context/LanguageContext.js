@@ -286,21 +286,179 @@ const translations = {
       noContacts: 'No contact requests available.',
       confirmDelete: 'Are you sure you want to delete this request?'
     }
+  },
+  sr: {
+    // Navigation
+    nav: {
+      home: 'Početna',
+      about: 'O nama',
+      services: 'Usluge',
+      portfolio: 'Portfolio',
+      contact: 'Kontakt',
+      cta: 'Pokreni projekat'
+    },
+    // Hero
+    hero: {
+      headline: 'Profesionalna Video Produkcija & Web Dizajn u Allgäu',
+      subheadline: 'Kreiramo video sadržaj, web stranice i digitalna rješenja za vaše poslovanje u Allgäu regiji i šire.',
+      ctaPrimary: 'Kontaktirajte nas',
+      ctaSecondary: 'Pogledajte portfolio'
+    },
+    // About
+    about: {
+      badge: 'O nama',
+      title: 'Vaš partner za video produkciju u Allgäu',
+      description1: 'Allgau Media je kreativna agencija specijalizovana za profesionalnu video produkciju, video montažu i izradu modernih web stranica za firme i brendove širom Allgäu regije.',
+      description2: 'Radimo sa malim i srednjim preduzećima koja žele da se izdvoje na tržištu kroz kvalitetan vizuelni sadržaj. Kombinujemo tehničko znanje, iskustvo i kreativan pristup kako bismo ispričali vašu priču na autentičan i efektan način.',
+      description3: 'Bilo da vam je potreban promotivni video, sadržaj za društvene mreže ili kompletna web prezentacija – pratimo vas kroz cijeli proces, od ideje i planiranja do finalne realizacije.',
+      description4: 'Naš cilj je jednostavan: da vaš biznis izgleda profesionalno, moderno i da ostavi jak prvi utisak na vaše klijente.'
+    },
+    // Services
+    services: {
+      badge: 'Naše usluge',
+      title: 'Video Produkcija & Web Dizajn iz Allgäu',
+      subtitle: 'Sveobuhvatna digitalna rješenja za vaše poslovanje',
+      videoproduction: {
+        title: 'Video Produkcija',
+        description: 'Profesionalni reklamni spotovi, korporativni filmovi i poslovni video sadržaj za vašu firmu. Ispričamo vašu priču vizuelno privlačno i efektno.',
+        features: ['Reklamni spotovi', 'Korporativni filmovi', 'Video proizvoda', 'Dokumentacija događaja']
+      },
+      videoediting: {
+        title: 'Video Montaža',
+        description: 'Profesionalna montaža i postprodukcija videa. Pretvaramo vaš sirovi materijal u uglađen, impresivan video sadržaj.',
+        features: ['Profesionalna montaža', 'Korekcija boja', 'Motion Graphics', 'Dizajn zvuka']
+      },
+      webdesign: {
+        title: 'Web Dizajn & Razvoj',
+        description: 'Moderne, responzivne web stranice koje konvertuju. Od dizajna do tehničke implementacije – sve iz jednog izvora.',
+        features: ['Responzivni dizajn', 'SEO optimizacija', 'E-Commerce', 'CMS integracija']
+      },
+      hosting: {
+        title: 'Hosting & Domene',
+        description: 'Pouzdani web hosting i upravljanje domenama. Brinemo se o tehničkoj infrastrukturi vaše online prisutnosti.',
+        features: ['Brzi hosting', 'SSL certifikati', 'Registracija domena', 'Email hosting']
+      },
+      cta: 'Saznajte više'
+    },
+    // Portfolio
+    portfolio: {
+      badge: 'Portfolio',
+      title: 'Naši radovi',
+      subtitle: 'Odabrani projekti iz oblasti video produkcije i web dizajna',
+      categories: {
+        all: 'Sve',
+        fitness: 'Fitness',
+        business: 'Biznis',
+        socialMedia: 'Društvene mreže'
+      },
+      viewProject: 'Pogledajte projekat'
+    },
+    // Why Choose Us
+    whyUs: {
+      badge: 'Zašto Allgau Media',
+      title: 'Vaša prednost sa nama',
+      subtitle: 'Šta nas izdvaja od drugih',
+      items: {
+        fast: {
+          title: 'Brza isporuka',
+          description: 'Efikasni procesi garantuju pravovremeni završetak vaših projekata.'
+        },
+        quality: {
+          title: 'Vrhunski kvalitet',
+          description: 'Najmodernija oprema i kreativno znanje za prvoklasne rezultate.'
+        },
+        modern: {
+          title: 'Moderna realizacija',
+          description: 'Aktuelne tehnologije i trendovi za savremena digitalna rješenja.'
+        },
+        support: {
+          title: 'Pouzdana podrška',
+          description: 'Lična briga i brzo reagovanje – čak i nakon završetka projekta.'
+        }
+      }
+    },
+    // Contact
+    contact: {
+      badge: 'Kontakt',
+      title: 'Pokrenite vaš projekat',
+      subtitle: 'Radujemo se vašoj poruci. Ispričajte nam o vašem projektu i javićemo vam se uskoro.',
+      form: {
+        name: 'Vaše ime',
+        email: 'Email adresa',
+        phone: 'Telefon (opciono)',
+        company: 'Firma (opciono)',
+        service: 'Usluga koja vas zanima',
+        serviceOptions: {
+          select: 'Molimo izaberite...',
+          videoproduction: 'Video Produkcija',
+          videoediting: 'Video Montaža',
+          webdesign: 'Web Dizajn & Razvoj',
+          hosting: 'Hosting & Domene'
+        },
+        message: 'Vaša poruka',
+        submit: 'Pošaljite poruku',
+        sending: 'Slanje...',
+        success: 'Hvala vam! Javićemo vam se uskoro.',
+        error: 'Nešto je pošlo po zlu. Molimo pokušajte ponovo.'
+      },
+      info: {
+        address: 'Adresa',
+        phone: 'Telefon',
+        email: 'Email'
+      }
+    },
+    // Footer
+    footer: {
+      description: 'Profesionalna video produkcija, video montaža i web dizajn u Memmingenu i Allgäu regiji.',
+      services: 'Usluge',
+      contact: 'Kontakt',
+      legal: 'Pravne informacije',
+      privacy: 'Politika privatnosti',
+      imprint: 'Impressum',
+      copyright: '© 2025 Allgau Media. Sva prava zadržana.'
+    },
+    // Admin
+    admin: {
+      title: 'Admin Panel',
+      contacts: 'Kontakt zahtjevi',
+      total: 'Ukupno',
+      unread: 'Nepročitano',
+      read: 'Pročitano',
+      markRead: 'Označi kao pročitano',
+      delete: 'Obriši',
+      noContacts: 'Nema kontakt zahtjeva.',
+      confirmDelete: 'Da li ste sigurni da želite obrisati ovaj zahtjev?'
+    }
   }
 };
 
 const LanguageContext = createContext();
 
+const languageOptions = [
+  { code: 'de', label: 'DE' },
+  { code: 'en', label: 'EN' },
+  { code: 'sr', label: 'SR/HR/BOS' }
+];
+
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('de');
 
-  const toggleLanguage = useCallback(() => {
-    setLanguage(prev => prev === 'de' ? 'en' : 'de');
+  const cycleLanguage = useCallback(() => {
+    setLanguage(prev => {
+      const currentIndex = languageOptions.findIndex(l => l.code === prev);
+      const nextIndex = (currentIndex + 1) % languageOptions.length;
+      return languageOptions[nextIndex].code;
+    });
   }, []);
+
+  const getCurrentLanguageLabel = useCallback(() => {
+    const lang = languageOptions.find(l => l.code === language);
+    return lang ? lang.label : 'DE';
+  }, [language]);
 
   const t = useCallback((key) => {
     const keys = key.split('.');
-    let value = translations[language];
+    let value = translations[language] || translations.de;
     for (const k of keys) {
       value = value?.[k];
     }
@@ -308,7 +466,7 @@ export const LanguageProvider = ({ children }) => {
   }, [language]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, cycleLanguage, getCurrentLanguageLabel, t, languageOptions }}>
       {children}
     </LanguageContext.Provider>
   );

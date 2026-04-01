@@ -13,20 +13,26 @@ const HomePage = () => {
 
   const seoData = {
     de: {
-      title: 'Allgau Media – Videoproduktion & Webdesign in Memmingen',
-      description: 'Professionelle Videoproduktion, Video Editing und Webdesign in Memmingen & Allgäu. Jetzt Projekt starten.',
+      title: 'Allgau Media – Videoproduktion & Webdesign im Allgäu',
+      description: 'Professionelle Videoproduktion, Video Editing und Webdesign im Allgäu. Jetzt Projekt starten.',
     },
     en: {
-      title: 'Allgau Media – Video Production & Web Design in Memmingen',
-      description: 'Professional video production, video editing and web design in Memmingen & Allgäu. Start your project now.',
+      title: 'Allgau Media – Video Production & Web Design in Allgäu',
+      description: 'Professional video production, video editing and web design in Allgäu. Start your project now.',
+    },
+    sr: {
+      title: 'Allgau Media – Video Produkcija & Web Dizajn u Allgäu',
+      description: 'Profesionalna video produkcija, video montaža i web dizajn u Allgäu regiji. Pokrenite vaš projekat sada.',
     }
   };
+
+  const currentSeo = seoData[language] || seoData.de;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Allgau Media",
-    "description": seoData[language].description,
+    "description": currentSeo.description,
     "url": "https://allgaumedia.de",
     "telephone": "+49-8331-9966090",
     "address": {
@@ -56,13 +62,13 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>{seoData[language].title}</title>
-        <meta name="description" content={seoData[language].description} />
-        <meta name="keywords" content="Videoproduktion Memmingen, Videograf Allgäu, Webdesign Memmingen, Video Editing Deutschland, Videograf Memmingen und Umgebung" />
-        <meta property="og:title" content={seoData[language].title} />
-        <meta property="og:description" content={seoData[language].description} />
+        <title>{currentSeo.title}</title>
+        <meta name="description" content={currentSeo.description} />
+        <meta name="keywords" content="Videoproduktion Allgäu, Videograf Allgäu, Webdesign Allgäu, Video Editing Deutschland" />
+        <meta property="og:title" content={currentSeo.title} />
+        <meta property="og:description" content={currentSeo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:locale" content={language === 'de' ? 'de_DE' : 'en_US'} />
+        <meta property="og:locale" content={language === 'de' ? 'de_DE' : language === 'sr' ? 'sr_RS' : 'en_US'} />
         <link rel="canonical" href="https://allgaumedia.de" />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

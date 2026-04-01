@@ -11,19 +11,25 @@ const ServicesPage = () => {
   const seoData = {
     de: {
       title: 'Leistungen – Videoproduktion & Webdesign | Allgau Media',
-      description: 'Unsere Leistungen: Professionelle Videoproduktion, Video Editing, Webdesign & Entwicklung, Hosting & Domains in Memmingen und dem Allgäu.',
+      description: 'Unsere Leistungen: Professionelle Videoproduktion, Video Editing, Webdesign & Entwicklung, Hosting & Domains im Allgäu.',
     },
     en: {
       title: 'Services – Video Production & Web Design | Allgau Media',
-      description: 'Our services: Professional video production, video editing, web design & development, hosting & domains in Memmingen and the Allgäu region.',
+      description: 'Our services: Professional video production, video editing, web design & development, hosting & domains in the Allgäu region.',
+    },
+    sr: {
+      title: 'Usluge – Video Produkcija & Web Dizajn | Allgau Media',
+      description: 'Naše usluge: Profesionalna video produkcija, video montaža, web dizajn & razvoj, hosting & domene u Allgäu regiji.',
     }
   };
+
+  const currentSeo = seoData[language] || seoData.de;
 
   return (
     <>
       <Helmet>
-        <title>{seoData[language].title}</title>
-        <meta name="description" content={seoData[language].description} />
+        <title>{currentSeo.title}</title>
+        <meta name="description" content={currentSeo.description} />
         <link rel="canonical" href="https://allgaumedia.de/services" />
       </Helmet>
 

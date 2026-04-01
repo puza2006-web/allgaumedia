@@ -11,19 +11,25 @@ const PortfolioPage = () => {
   const seoData = {
     de: {
       title: 'Portfolio – Unsere Arbeiten | Allgau Media',
-      description: 'Entdecken Sie unser Portfolio: Professionelle Videoproduktionen und Webdesign-Projekte aus Memmingen und dem Allgäu.',
+      description: 'Entdecken Sie unser Portfolio: Professionelle Videoproduktionen und Webdesign-Projekte aus dem Allgäu.',
     },
     en: {
       title: 'Portfolio – Our Work | Allgau Media',
-      description: 'Discover our portfolio: Professional video productions and web design projects from Memmingen and the Allgäu region.',
+      description: 'Discover our portfolio: Professional video productions and web design projects from the Allgäu region.',
+    },
+    sr: {
+      title: 'Portfolio – Naši radovi | Allgau Media',
+      description: 'Otkrijte naš portfolio: Profesionalne video produkcije i web dizajn projekti iz Allgäu regije.',
     }
   };
+
+  const currentSeo = seoData[language] || seoData.de;
 
   return (
     <>
       <Helmet>
-        <title>{seoData[language].title}</title>
-        <meta name="description" content={seoData[language].description} />
+        <title>{currentSeo.title}</title>
+        <meta name="description" content={currentSeo.description} />
         <link rel="canonical" href="https://allgaumedia.de/portfolio" />
       </Helmet>
 

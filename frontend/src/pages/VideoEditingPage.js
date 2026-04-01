@@ -72,6 +72,38 @@ const VideoEditingPage = () => {
       ],
       cta: 'Discuss Your Project',
       ctaText: 'Have video material that needs editing? We\'ll make more out of it!'
+    },
+    sr: {
+      title: 'Profesionalna Video Montaža',
+      subtitle: 'Od sirovog materijala do remek-djela',
+      intro: 'Pretvaramo vaš video materijal u uglađen, profesionalni sadržaj. Od jednostavnih rezova do kompleksne animacije – oživljavamo vašu viziju.',
+      sections: [
+        {
+          title: 'Šta nudimo',
+          text: 'Naša usluga video montaže uključuje profesionalno rezanje, korekciju boja, obradu zvuka i motion graphics. Radimo sa najnovijim alatima kao što su DaVinci Resolve, Adobe Premiere Pro i After Effects kako bismo garantovali najviši kvalitet. Bilo da imate postojeći materijal ili ga mi snimimo za vas – isporučujemo savršen krajnji rezultat.',
+          image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80'
+        },
+        {
+          title: 'Za koga je namijenjeno?',
+          text: 'Naša usluga montaže je idealna za kreatore sadržaja, firme sa sopstvenim video materijalom, marketing odjele i sve koji trebaju profesionalnu postprodukciju. Ako snimate video sadržaje ali nemate vremena ili stručnosti za montažu, mi smo vaš partner.',
+          image: 'https://images.unsplash.com/photo-1535016120720-40c646be5580?w=800&q=80'
+        },
+        {
+          title: 'Vaše prednosti',
+          text: 'Profesionalna montaža čini razliku između amatera i profesionalca. Optimizujemo vaš materijal za maksimalni uticaj: savršeni rezovi, atmosferična korekcija boja, čist zvuk i privlačna grafika. Rezultat: video sadržaji koji plene vaše gledaoce i pojačavaju vašu poruku.',
+          image: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80'
+        }
+      ],
+      features: [
+        'Profesionalno rezanje videa',
+        'Color Grading & korekcija',
+        'Motion Graphics & animacija',
+        'Dizajn zvuka & obrada',
+        'Titlovi & tekstualni prikazi',
+        'Prilagođavanje formata za sve platforme'
+      ],
+      cta: 'Razgovarajmo o projektu',
+      ctaText: 'Imate video materijal koji treba montirati? Mi ćemo napraviti više od toga!'
     }
   };
 

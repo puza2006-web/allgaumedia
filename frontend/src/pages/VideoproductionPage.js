@@ -74,6 +74,38 @@ const VideoproductionPage = () => {
       ],
       cta: 'Discuss Your Project',
       ctaText: 'Ready for your next video project? Contact us for a free consultation.'
+    },
+    sr: {
+      title: 'Profesionalna Video Produkcija u Allgäu',
+      subtitle: 'Ispričamo vašu priču kroz impresivne video sadržaje',
+      intro: 'Bilo da se radi o korporativnom filmu, reklami ili prezentaciji proizvoda – proizvodimo kvalitetne video sadržaje koji oživljavaju vaš brend i oduševljavaju vašu ciljnu publiku.',
+      sections: [
+        {
+          title: 'Šta nudimo',
+          text: 'Naša video produkcija pokriva cijeli proces od koncepcije do isporuke. Radimo sa najmodernijom opremom i iskusnim timom kako bismo kreirali video sadržaje koji jasno i impresivno prenose vašu poruku. Bilo za društvene mreže, vašu web stranicu ili prezentacije – isporučujemo pravi format.',
+          image: 'https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?w=800&q=80'
+        },
+        {
+          title: 'Za koga je namijenjeno?',
+          text: 'Naša video produkcija je namijenjena malim i srednjim preduzećima, startupima, lokalnim prodavnicama i brendovima koji žele ojačati svoju online prisutnost. Bilo da vodite restoran, fitness studio, zanatsku radnju ili uslužnu firmu – profesionalni video sadržaji vam pomažu da izgradite povjerenje i pridobijete nove klijente.',
+          image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
+        },
+        {
+          title: 'Vaše prednosti',
+          text: 'Profesionalni video sadržaji vam pomažu da se izdvojite od konkurencije. Video generiše više angažmana od bilo kog drugog medija, povećava vašu vidljivost na pretraživačima i društvenim mrežama i stvara emocionalnu vezu sa vašim klijentima. Investirajte u kvalitet koji se dugoročno isplati.',
+          image: STUDIO_IMAGE
+        }
+      ],
+      features: [
+        'Korporativni filmovi',
+        'Reklamni spotovi',
+        'Video proizvoda i objašnjenja',
+        'Dokumentacije događaja',
+        'Sadržaj za društvene mreže',
+        'Snimci dronom'
+      ],
+      cta: 'Razgovarajmo o projektu',
+      ctaText: 'Spremni za vaš sljedeći video projekat? Kontaktirajte nas za besplatne konsultacije.'
     }
   };
 
