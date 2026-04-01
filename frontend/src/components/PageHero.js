@@ -2,7 +2,7 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 const HERO_VIDEO = "https://customer-assets.emergentagent.com/job_d0828124-8795-483a-ac40-b8b706fba433/artifacts/fg3mvmw0_24496-344562743.mp4";
-const LOGO_WHITE = "https://customer-assets.emergentagent.com/job_d0828124-8795-483a-ac40-b8b706fba433/artifacts/djol97cf_LOGO%20Allgau%20Media.png";
+const LOGO_WHITE = "https://customer-assets.emergentagent.com/job_allgau-media-preview/artifacts/45q8sm31_LOGO%20Allgau%20Media%20crni.png";
 
 const PageHero = ({ title, subtitle, badge }) => {
   return (
