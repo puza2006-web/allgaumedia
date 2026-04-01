@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Video, Film, Code, Server, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
+const STUDIO_IMAGE = "https://customer-assets.emergentagent.com/job_allgau-media-preview/artifacts/ora9i7hq_pexels-photography-1850469.jpg";
+
 const ServicesSection = ({ showFull = false }) => {
   const { t } = useLanguage();
 
@@ -65,6 +67,24 @@ const ServicesSection = ({ showFull = false }) => {
             >
               {t('services.subtitle')}
             </p>
+          </div>
+        )}
+
+        {/* Studio Image Banner - only on full page */}
+        {showFull && (
+          <div className="relative mb-16 overflow-hidden">
+            <img 
+              src={STUDIO_IMAGE}
+              alt="Allgau Media Studio"
+              className="w-full h-64 md:h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center">
+              <div className="px-8 md:px-12">
+                <p className="text-white/80 text-lg md:text-xl max-w-md">
+                  Professionelle Ausrüstung. Kreative Vision. Ihr Erfolg.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 

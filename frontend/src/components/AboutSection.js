@@ -1,14 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
+const STUDIO_IMAGE = "https://customer-assets.emergentagent.com/job_allgau-media-preview/artifacts/ora9i7hq_pexels-photography-1850469.jpg";
+
 const AboutSection = () => {
   const { t } = useLanguage();
-
-  const stats = [
-    { value: '150+', label: t('about.stats.projects') },
-    { value: '80+', label: t('about.stats.clients') },
-    { value: '5+', label: t('about.stats.years') },
-  ];
 
   return (
     <section 
@@ -16,17 +12,8 @@ const AboutSection = () => {
       className="py-24 md:py-32 bg-[#050505] relative overflow-hidden"
       data-testid="about-section"
     >
-      {/* Background texture */}
-      <div className="absolute inset-0 opacity-30">
-        <img 
-          src="https://static.prod-images.emergentagent.com/jobs/d0828124-8795-483a-ac40-b8b706fba433/images/f74ec94b014a25740b7c1dbb668c25b8ea6149941c61336306f5823804c8df3e.png"
-          alt=""
-          className="w-full h-full object-cover"
-        />
-      </div>
-
       <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left: Content */}
           <div>
             {/* Badge */}
@@ -50,25 +37,37 @@ const AboutSection = () => {
               <p data-testid="about-description-1">{t('about.description1')}</p>
               <p data-testid="about-description-2">{t('about.description2')}</p>
               <p data-testid="about-description-3">{t('about.description3')}</p>
+              <p data-testid="about-description-4">{t('about.description4')}</p>
             </div>
           </div>
 
-          {/* Right: Stats */}
-          <div className="grid grid-cols-3 gap-6">
-            {stats.map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-zinc-950 border border-white/10 p-6 md:p-8 text-center card-hover"
-                data-testid={`about-stat-${index}`}
-              >
-                <div className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xs uppercase tracking-[0.15em] text-zinc-500">
-                  {stat.label}
+          {/* Right: Studio Image with creative overlay */}
+          <div className="relative">
+            <div className="relative overflow-hidden">
+              {/* Main Image */}
+              <img 
+                src={STUDIO_IMAGE}
+                alt="Allgau Media Studio"
+                className="w-full h-auto object-cover"
+                data-testid="about-studio-image"
+              />
+              
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              
+              {/* Creative text overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-[1px] bg-white/50" />
+                  <span className="text-white/80 text-sm uppercase tracking-[0.2em]">
+                    Creative Studio
+                  </span>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Decorative border */}
+            <div className="absolute -bottom-4 -right-4 w-full h-full border border-white/10 -z-10" />
           </div>
         </div>
       </div>

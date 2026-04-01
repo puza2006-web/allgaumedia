@@ -13,7 +13,7 @@ const translations = {
     },
     // Hero
     hero: {
-      headline: 'Professionelle Videoproduktion & Webdesign in Memmingen',
+      headline: 'Professionelle Videoproduktion & Webdesign im Allgäu',
       subheadline: 'Wir erstellen Videos, Websites und digitale Lösungen für Ihr Unternehmen im Allgäu und darüber hinaus.',
       ctaPrimary: 'Kontakt aufnehmen',
       ctaSecondary: 'Portfolio ansehen'
@@ -21,20 +21,16 @@ const translations = {
     // About
     about: {
       badge: 'Über uns',
-      title: 'Ihr Partner für Videoproduktion in Memmingen & Allgäu',
-      description1: 'Allgau Media ist Ihre lokale Kreativagentur für professionelle Videoproduktion, Video Editing und Webdesign in Memmingen und der gesamten Allgäu-Region.',
-      description2: 'Als erfahrene Videografen und Webdesigner verstehen wir die Bedürfnisse lokaler Unternehmen. Wir kombinieren technische Expertise mit kreativem Storytelling, um Ihre Marke optimal zu präsentieren – authentisch, professionell und wirkungsvoll.',
-      description3: 'Von der ersten Idee bis zum fertigen Produkt begleiten wir Sie durch den gesamten Prozess. Ob Imagefilm, Social Media Content oder Ihre neue Unternehmenswebsite – wir liefern Qualität, auf die Sie sich verlassen können.',
-      stats: {
-        projects: 'Projekte',
-        clients: 'Zufriedene Kunden',
-        years: 'Jahre Erfahrung'
-      }
+      title: 'Ihr Partner für Videoproduktion im Allgäu',
+      description1: 'Allgau Media ist eine kreative Agentur, spezialisiert auf professionelle Videoproduktion, Videobearbeitung und die Erstellung moderner Websites für Unternehmen und Marken in der gesamten Allgäu-Region.',
+      description2: 'Wir arbeiten mit kleinen und mittelständischen Unternehmen, die sich durch hochwertigen visuellen Content auf dem Markt abheben möchten. Wir kombinieren technisches Know-how, Erfahrung und einen kreativen Ansatz, um Ihre Geschichte authentisch und wirkungsvoll zu erzählen.',
+      description3: 'Ob Sie ein Werbevideo, Content für Social Media oder eine komplette Webpräsentation benötigen – wir begleiten Sie durch den gesamten Prozess, von der Idee und Planung bis zur finalen Umsetzung.',
+      description4: 'Unser Ziel ist einfach: Ihr Business soll professionell und modern aussehen und einen starken ersten Eindruck bei Ihren Kunden hinterlassen.'
     },
     // Services
     services: {
       badge: 'Unsere Leistungen',
-      title: 'Videoproduktion & Webdesign aus Memmingen',
+      title: 'Videoproduktion & Webdesign aus dem Allgäu',
       subtitle: 'Umfassende digitale Lösungen für Ihr Unternehmen',
       videoproduction: {
         title: 'Videoproduktion',
@@ -160,7 +156,7 @@ const translations = {
     },
     // Hero
     hero: {
-      headline: 'Professional Video Production & Web Design in Memmingen',
+      headline: 'Professional Video Production & Web Design in Allgäu',
       subheadline: 'We create videos, websites, and digital solutions for your business in the Allgäu region and beyond.',
       ctaPrimary: 'Get in Touch',
       ctaSecondary: 'View Portfolio'
@@ -168,20 +164,16 @@ const translations = {
     // About
     about: {
       badge: 'About Us',
-      title: 'Your Partner for Video Production in Memmingen & Allgäu',
-      description1: 'Allgau Media is your local creative agency for professional video production, video editing, and web design in Memmingen and the entire Allgäu region.',
-      description2: 'As experienced videographers and web designers, we understand the needs of local businesses. We combine technical expertise with creative storytelling to present your brand optimally – authentic, professional, and impactful.',
-      description3: 'From the initial idea to the finished product, we accompany you through the entire process. Whether corporate film, social media content, or your new company website – we deliver quality you can rely on.',
-      stats: {
-        projects: 'Projects',
-        clients: 'Happy Clients',
-        years: 'Years Experience'
-      }
+      title: 'Your Partner for Video Production in Allgäu',
+      description1: 'Allgau Media is a creative agency specialized in professional video production, video editing, and creating modern websites for companies and brands throughout the Allgäu region.',
+      description2: 'We work with small and medium-sized businesses that want to stand out in the market through quality visual content. We combine technical knowledge, experience, and a creative approach to tell your story in an authentic and effective way.',
+      description3: 'Whether you need a promotional video, social media content, or a complete web presentation – we accompany you through the entire process, from idea and planning to final realization.',
+      description4: 'Our goal is simple: to make your business look professional, modern, and leave a strong first impression on your clients.'
     },
     // Services
     services: {
       badge: 'Our Services',
-      title: 'Video Production & Web Design from Memmingen',
+      title: 'Video Production & Web Design from Allgäu',
       subtitle: 'Comprehensive digital solutions for your business',
       videoproduction: {
         title: 'Video Production',
