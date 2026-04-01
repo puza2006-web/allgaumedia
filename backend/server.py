@@ -1,15 +1,14 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
-from typing import List
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
-
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -19,54 +18,234 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Create the main app without a prefix
-app = FastAPI()
+# Create the main app
+app = FastAPI(
+    title="Allgau Media API",
+    description="Backend API for Allgau Media website",
+    version="1.0.0"
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
-
 # Define Models
-class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
+class ContactMessage(BaseModel):
+    model_config = ConfigDict(extra="ignore")
     
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
+    name: str
+    email: EmailStr
+    message: str
+    phone: Optional[str] = None
+    company: Optional[str] = None
+    service_interest: Optional[str] = None
+    is_read: bool = False
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
-class StatusCheckCreate(BaseModel):
-    client_name: str
+class ContactMessageCreate(BaseModel):
+    name: str
+    email: EmailStr
+    message: str
+    phone: Optional[str] = None
+    company: Optional[str] = None
+    service_interest: Optional[str] = None
 
-# Add your routes to the router instead of directly to app
+class ContactMessageUpdate(BaseModel):
+    is_read: Optional[bool] = None
+
+# Portfolio Item Model
+class PortfolioItem(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    title_en: str
+    description: str
+    description_en: str
+    category: str
+    thumbnail: str
+    video_url: Optional[str] = None
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+# Routes
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "Allgau Media API", "status": "running"}
 
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
+@api_router.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now(timezone.utc).isoformat()}
+
+# Contact Form Endpoints
+@api_router.post("/contact", response_model=ContactMessage)
+async def create_contact(input: ContactMessageCreate):
+    contact_dict = input.model_dump()
+    contact_obj = ContactMessage(**contact_dict)
     
-    # Convert to dict and serialize datetime to ISO string for MongoDB
-    doc = status_obj.model_dump()
+    doc = contact_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
-    return status_obj
+    await db.contacts.insert_one(doc)
+    return contact_obj
 
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+@api_router.get("/contacts", response_model=List[ContactMessage])
+async def get_contacts(is_read: Optional[bool] = None):
+    query = {}
+    if is_read is not None:
+        query['is_read'] = is_read
     
-    # Convert ISO string timestamps back to datetime objects
-    for check in status_checks:
-        if isinstance(check['timestamp'], str):
-            check['timestamp'] = datetime.fromisoformat(check['timestamp'])
+    contacts = await db.contacts.find(query, {"_id": 0}).sort("timestamp", -1).to_list(1000)
     
-    return status_checks
+    for contact in contacts:
+        if isinstance(contact.get('timestamp'), str):
+            contact['timestamp'] = datetime.fromisoformat(contact['timestamp'])
+    
+    return contacts
 
-# Include the router in the main app
+@api_router.get("/contacts/{contact_id}", response_model=ContactMessage)
+async def get_contact(contact_id: str):
+    contact = await db.contacts.find_one({"id": contact_id}, {"_id": 0})
+    if not contact:
+        raise HTTPException(status_code=404, detail="Contact not found")
+    
+    if isinstance(contact.get('timestamp'), str):
+        contact['timestamp'] = datetime.fromisoformat(contact['timestamp'])
+    
+    return contact
+
+@api_router.patch("/contacts/{contact_id}", response_model=ContactMessage)
+async def update_contact(contact_id: str, update: ContactMessageUpdate):
+    update_dict = {k: v for k, v in update.model_dump().items() if v is not None}
+    
+    if not update_dict:
+        raise HTTPException(status_code=400, detail="No fields to update")
+    
+    result = await db.contacts.update_one(
+        {"id": contact_id},
+        {"$set": update_dict}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Contact not found")
+    
+    contact = await db.contacts.find_one({"id": contact_id}, {"_id": 0})
+    if isinstance(contact.get('timestamp'), str):
+        contact['timestamp'] = datetime.fromisoformat(contact['timestamp'])
+    
+    return contact
+
+@api_router.delete("/contacts/{contact_id}")
+async def delete_contact(contact_id: str):
+    result = await db.contacts.delete_one({"id": contact_id})
+    
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Contact not found")
+    
+    return {"message": "Contact deleted successfully", "id": contact_id}
+
+@api_router.get("/contacts/stats/summary")
+async def get_contact_stats():
+    total = await db.contacts.count_documents({})
+    unread = await db.contacts.count_documents({"is_read": False})
+    
+    return {
+        "total": total,
+        "unread": unread,
+        "read": total - unread
+    }
+
+# Portfolio Endpoints
+@api_router.get("/portfolio", response_model=List[PortfolioItem])
+async def get_portfolio(category: Optional[str] = None):
+    query = {}
+    if category and category != "all":
+        query['category'] = category
+    
+    items = await db.portfolio.find(query, {"_id": 0}).sort("created_at", -1).to_list(100)
+    
+    for item in items:
+        if isinstance(item.get('created_at'), str):
+            item['created_at'] = datetime.fromisoformat(item['created_at'])
+    
+    return items
+
+# Seed portfolio data on startup
+@app.on_event("startup")
+async def seed_portfolio():
+    count = await db.portfolio.count_documents({})
+    if count == 0:
+        portfolio_items = [
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Fitness Studio Werbefilm",
+                "title_en": "Fitness Studio Commercial",
+                "description": "Dynamischer Werbespot für ein lokales Fitnessstudio in Memmingen",
+                "description_en": "Dynamic commercial for a local fitness studio in Memmingen",
+                "category": "fitness",
+                "thumbnail": "https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Unternehmensvorstellung",
+                "title_en": "Corporate Introduction",
+                "description": "Professionelle Unternehmensvorstellung für ein Technologieunternehmen",
+                "description_en": "Professional corporate introduction for a technology company",
+                "category": "business",
+                "thumbnail": "https://images.unsplash.com/photo-1773966071293-bea3d7646fd1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Social Media Kampagne",
+                "title_en": "Social Media Campaign",
+                "description": "Kreative Social Media Videos für Instagram und TikTok",
+                "description_en": "Creative social media videos for Instagram and TikTok",
+                "category": "social-media",
+                "thumbnail": "https://images.unsplash.com/photo-1760670399462-f5e479452c27?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Produktvideo",
+                "title_en": "Product Video",
+                "description": "Hochwertiges Produktvideo für E-Commerce",
+                "description_en": "High-quality product video for e-commerce",
+                "category": "business",
+                "thumbnail": "https://images.unsplash.com/photo-1737737351943-82e01f866e53?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHx3ZWIlMjBkZXZlbG9wbWVudCUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc3fDA&ixlib=rb-4.1.0&q=85",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Yoga Studio Promotion",
+                "title_en": "Yoga Studio Promotion",
+                "description": "Entspannende Atmosphäre eingefangen für ein Yoga Studio",
+                "description_en": "Relaxing atmosphere captured for a yoga studio",
+                "category": "fitness",
+                "thumbnail": "https://images.unsplash.com/photo-1758520145147-c30bc656f314?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwyfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMG9mZmljZSUyMGRhcmt8ZW58MHx8fHwxNzc1MDM0ODc2fDA&ixlib=rb-4.1.0&q=85",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "title": "Restaurant Werbung",
+                "title_en": "Restaurant Advertisement",
+                "description": "Appetitanregende Videos für ein Restaurant im Allgäu",
+                "description_en": "Appetizing videos for a restaurant in the Allgäu region",
+                "category": "social-media",
+                "thumbnail": "https://images.pexels.com/photos/36389508/pexels-photo-36389508.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+                "video_url": None,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+        ]
+        await db.portfolio.insert_many(portfolio_items)
+        logging.info("Portfolio data seeded successfully")
+
+# Include the router
 app.include_router(api_router)
 
 app.add_middleware(

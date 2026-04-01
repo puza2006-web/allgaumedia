@@ -1,53 +1,119 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { LanguageProvider } from "./context/LanguageContext";
+import { Toaster } from "./components/ui/sonner";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import HomePage from "./pages/HomePage";
+import ServicesPage from "./pages/ServicesPage";
+import PortfolioPage from "./pages/PortfolioPage";
+import AdminPage from "./pages/AdminPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import ImprintPage from "./pages/ImprintPage";
+import "./App.css";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+// Scroll to top on route change
+const ScrollToTop = () => {
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    helloWorldApi();
-  }, []);
+    if (hash) {
+      const element = document.getElementById(hash.slice(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
+  return null;
+};
+
+// Layout wrapper
+const Layout = ({ children }) => {
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div className="min-h-screen bg-[#050505] flex flex-col">
+      <Navbar />
+      <div className="flex-grow">{children}</div>
+      <Footer />
+    </div>
+  );
+};
+
+// Admin layout (no footer)
+const AdminLayout = ({ children }) => {
+  return (
+    <div className="min-h-screen bg-[#050505] flex flex-col">
+      <Navbar />
+      <div className="flex-grow">{children}</div>
     </div>
   );
 };
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <HelmetProvider>
+      <LanguageProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/services"
+              element={
+                <Layout>
+                  <ServicesPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/portfolio"
+              element={
+                <Layout>
+                  <PortfolioPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <AdminLayout>
+                  <AdminPage />
+                </AdminLayout>
+              }
+            />
+            <Route
+              path="/privacy"
+              element={
+                <Layout>
+                  <PrivacyPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/imprint"
+              element={
+                <Layout>
+                  <ImprintPage />
+                </Layout>
+              }
+            />
+          </Routes>
+          <Toaster />
+        </BrowserRouter>
+      </LanguageProvider>
+    </HelmetProvider>
   );
 }
 
