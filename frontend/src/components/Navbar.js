@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-const LOGO_WHITE = "https://customer-assets.emergentagent.com/job_d0828124-8795-483a-ac40-b8b706fba433/artifacts/djol97cf_LOGO%20Allgau%20Media.png";
+const LOGO_WHITE = "https://customer-assets.emergentagent.com/job_allgau-media-preview/artifacts/45q8sm31_LOGO%20Allgau%20Media%20crni.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,7 +58,7 @@ const Navbar = () => {
             <img 
               src={LOGO_WHITE} 
               alt="Allgau Media" 
-              className="h-10 md:h-12 w-auto"
+              className="h-12 md:h-14 w-auto"
             />
           </Link>
 

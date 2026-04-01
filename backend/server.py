@@ -174,6 +174,9 @@ async def get_portfolio(category: Optional[str] = None):
 async def seed_portfolio():
     count = await db.portfolio.count_documents({})
     if count == 0:
+        # Using the client's promo video as placeholder for all portfolio items
+        promo_video = "https://customer-assets.emergentagent.com/job_d0828124-8795-483a-ac40-b8b706fba433/artifacts/fg3mvmw0_24496-344562743.mp4"
+        
         portfolio_items = [
             {
                 "id": str(uuid.uuid4()),
@@ -183,7 +186,7 @@ async def seed_portfolio():
                 "description_en": "Dynamic commercial for a local fitness studio in Memmingen",
                 "category": "fitness",
                 "thumbnail": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/3201508/3201508-hd_1920_1080_24fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -194,7 +197,7 @@ async def seed_portfolio():
                 "description_en": "Professional car care and detailing services",
                 "category": "business",
                 "thumbnail": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/5548426/5548426-hd_1920_1080_30fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -205,7 +208,7 @@ async def seed_portfolio():
                 "description_en": "Creative social media videos for Instagram and TikTok",
                 "category": "social-media",
                 "thumbnail": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/6981411/6981411-hd_1920_1080_25fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -216,7 +219,7 @@ async def seed_portfolio():
                 "description_en": "Elegant presentation of a nail salon",
                 "category": "business",
                 "thumbnail": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/7670845/7670845-hd_1920_1080_25fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -227,7 +230,7 @@ async def seed_portfolio():
                 "description_en": "Modern image film for a hair salon",
                 "category": "fitness",
                 "thumbnail": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/3997822/3997822-hd_1920_1080_25fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -238,7 +241,7 @@ async def seed_portfolio():
                 "description_en": "Appetizing videos for a restaurant in the Allgäu region",
                 "category": "social-media",
                 "thumbnail": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-                "video_url": "https://videos.pexels.com/video-files/3298572/3298572-hd_1920_1080_30fps.mp4",
+                "video_url": promo_video,
                 "created_at": datetime.now(timezone.utc).isoformat()
             }
         ]
