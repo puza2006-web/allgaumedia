@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, ArrowRight } from 'lucide-react';
+import { Play, X, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ const PortfolioSection = ({ showFull = false }) => {
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const categories = [
     { id: 'all', label: t('portfolio.categories.all') },
@@ -37,6 +38,16 @@ const PortfolioSection = ({ showFull = false }) => {
   };
 
   const displayedPortfolio = showFull ? portfolio : portfolio.slice(0, 4);
+
+  const openVideoModal = (item) => {
+    setSelectedVideo(item);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeVideoModal = () => {
+    setSelectedVideo(null);
+    document.body.style.overflow = 'auto';
+  };
 
   return (
     <section 
@@ -101,7 +112,8 @@ const PortfolioSection = ({ showFull = false }) => {
             {displayedPortfolio.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative aspect-video overflow-hidden bg-zinc-950 border border-white/10 card-hover"
+                onClick={() => openVideoModal(item)}
+                className="group relative aspect-video overflow-hidden bg-zinc-950 border border-white/10 card-hover cursor-pointer"
                 data-testid={`portfolio-item-${index}`}
               >
                 {/* Thumbnail */}
@@ -114,8 +126,8 @@ const PortfolioSection = ({ showFull = false }) => {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6">
                   {/* Play button */}
-                  <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur-sm">
-                    <Play className="w-6 h-6 text-white ml-1" />
+                  <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-4 backdrop-blur-sm border border-white/30 group-hover:scale-110 transition-transform">
+                    <Play className="w-8 h-8 text-white ml-1" fill="white" />
                   </div>
 
                   {/* Title */}
@@ -132,6 +144,11 @@ const PortfolioSection = ({ showFull = false }) => {
                 {/* Category badge */}
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-xs uppercase tracking-wider text-zinc-300">
                   {item.category}
+                </div>
+
+                {/* Play icon always visible */}
+                <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm group-hover:opacity-0 transition-opacity">
+                  <Play className="w-4 h-4 text-white ml-0.5" fill="white" />
                 </div>
               </div>
             ))}
@@ -152,6 +169,51 @@ const PortfolioSection = ({ showFull = false }) => {
           </div>
         )}
       </div>
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={closeVideoModal}
+          data-testid="video-modal"
+        >
+          <button
+            onClick={closeVideoModal}
+            className="absolute top-6 right-6 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 transition-colors rounded-full"
+            data-testid="close-video-modal"
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+
+          <div 
+            className="w-full max-w-5xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Video Title */}
+            <h3 className="text-2xl font-medium text-white text-center mb-6">
+              {language === 'de' ? selectedVideo.title : selectedVideo.title_en}
+            </h3>
+
+            {/* Video Player */}
+            <div className="aspect-video bg-black rounded-lg overflow-hidden">
+              <video
+                src={selectedVideo.video_url}
+                controls
+                autoPlay
+                className="w-full h-full object-contain"
+                data-testid="video-player"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            {/* Video Description */}
+            <p className="text-zinc-400 text-center mt-6 max-w-2xl mx-auto">
+              {language === 'de' ? selectedVideo.description : selectedVideo.description_en}
+            </p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

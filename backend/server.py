@@ -183,18 +183,18 @@ async def seed_portfolio():
                 "description_en": "Dynamic commercial for a local fitness studio in Memmingen",
                 "category": "fitness",
                 "thumbnail": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-                "video_url": None,
+                "video_url": "https://videos.pexels.com/video-files/3201508/3201508-hd_1920_1080_24fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
                 "id": str(uuid.uuid4()),
-                "title": "Unternehmensvorstellung",
-                "title_en": "Corporate Introduction",
-                "description": "Professionelle Unternehmensvorstellung für ein Technologieunternehmen",
-                "description_en": "Professional corporate introduction for a technology company",
+                "title": "Auto Detailing",
+                "title_en": "Car Detailing",
+                "description": "Professionelle Autopflege und Detailing Services",
+                "description_en": "Professional car care and detailing services",
                 "category": "business",
-                "thumbnail": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-                "video_url": None,
+                "thumbnail": "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=800&q=80",
+                "video_url": "https://videos.pexels.com/video-files/5548426/5548426-hd_1920_1080_30fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -205,29 +205,29 @@ async def seed_portfolio():
                 "description_en": "Creative social media videos for Instagram and TikTok",
                 "category": "social-media",
                 "thumbnail": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
-                "video_url": None,
+                "video_url": "https://videos.pexels.com/video-files/6981411/6981411-hd_1920_1080_25fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
                 "id": str(uuid.uuid4()),
-                "title": "Produktvideo",
-                "title_en": "Product Video",
-                "description": "Hochwertiges Produktvideo für E-Commerce",
-                "description_en": "High-quality product video for e-commerce",
+                "title": "Nagelstudio Promotion",
+                "title_en": "Nail Salon Promotion",
+                "description": "Elegante Präsentation eines Nagelstudios",
+                "description_en": "Elegant presentation of a nail salon",
                 "category": "business",
-                "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-                "video_url": None,
+                "thumbnail": "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&q=80",
+                "video_url": "https://videos.pexels.com/video-files/7670845/7670845-hd_1920_1080_25fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
                 "id": str(uuid.uuid4()),
-                "title": "Yoga Studio Promotion",
-                "title_en": "Yoga Studio Promotion",
-                "description": "Entspannende Atmosphäre eingefangen für ein Yoga Studio",
-                "description_en": "Relaxing atmosphere captured for a yoga studio",
+                "title": "Friseursalon Imagefilm",
+                "title_en": "Hair Salon Image Film",
+                "description": "Moderner Imagefilm für einen Friseursalon",
+                "description_en": "Modern image film for a hair salon",
                 "category": "fitness",
-                "thumbnail": "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80",
-                "video_url": None,
+                "thumbnail": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&q=80",
+                "video_url": "https://videos.pexels.com/video-files/3997822/3997822-hd_1920_1080_25fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             },
             {
@@ -238,7 +238,7 @@ async def seed_portfolio():
                 "description_en": "Appetizing videos for a restaurant in the Allgäu region",
                 "category": "social-media",
                 "thumbnail": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
-                "video_url": None,
+                "video_url": "https://videos.pexels.com/video-files/3298572/3298572-hd_1920_1080_30fps.mp4",
                 "created_at": datetime.now(timezone.utc).isoformat()
             }
         ]
