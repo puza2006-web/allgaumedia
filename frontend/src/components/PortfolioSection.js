@@ -7,7 +7,15 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const PortfolioSection = ({ showFull = false }) => {
-  const { language, t } = useLanguage();
+ const { language, t: originalT } = useLanguage();
+
+const t = (key) => {
+  const value = originalT(key);
+  if (typeof value === "object" && value !== null) {
+    return value.label || "";
+  }
+  return value || "";
+};
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
