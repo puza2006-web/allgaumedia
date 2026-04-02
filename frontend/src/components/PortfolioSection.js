@@ -133,7 +133,7 @@ const t = (key) => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-testid="portfolio-grid">
-            {displayedPortfolio||[].map((item, index) => (
+            {(displayedPortfolio || []).map((item, index) => (
               <div
                 key={item.id}
                 onClick={() => openVideoModal(item)}
@@ -143,7 +143,7 @@ const t = (key) => {
                 {/* Thumbnail */}
                 <img
                   src={item.thumbnail||""}
-                  alt={String((language === 'de' ? item.title : item.title_en)|| ""}
+                  alt={String((language === 'de' ? item.title : item.title_en)|| "")}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
