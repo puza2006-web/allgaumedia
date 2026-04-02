@@ -59,9 +59,12 @@ const PortfolioSection = ({ showFull = false }) => {
   <section className="py-20 bg-black text-white">
     <h2 className="text-3xl text-center mb-10">Portfolio</h2>
 
-    <div className="max-w-4xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
       {portfolio.map((item) => (
-        <div key={item.id} className="mb-4 p-4 border border-white">
+        <div
+          key={item.id}
+          className="bg-zinc-900 aspect-video flex items-center justify-center"
+        >
           {item.title}
         </div>
       ))}
