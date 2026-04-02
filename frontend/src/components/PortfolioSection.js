@@ -7,69 +7,37 @@ import axios from 'axios';
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 const PortfolioSection = ({ showFull = false }) => {
- const { language, t: originalT } = useLanguage();
-
-const t = (key) => {
-  const value = originalT(key);
-  if (typeof value === "object" && value !== null) {
-    return value.label || "";
-  }
-  return value || "";
-};
+  const { language, t } = useLanguage();
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
+
   const categories = [
-  { id: 'all', label: String(t('portfolio.categories.all') || "") },
-  { id: 'fitness', label: String(t('portfolio.categories.fitness') || "") },
-  { id: 'business', label: String(t('portfolio.categories.business') || "") },
-  { id: 'social-media', label: String(t('portfolio.categories.socialMedia') || "") },
-];
+    { id: 'all', label: t('portfolio.categories.all') },
+    { id: 'fitness', label: t('portfolio.categories.fitness') },
+    { id: 'business', label: t('portfolio.categories.business') },
+    { id: 'social-media', label: t('portfolio.categories.socialMedia') },
+  ];
 
   useEffect(() => {
     fetchPortfolio();
   }, [activeCategory]);
 
   const fetchPortfolio = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/api/portfolio`, {
-      params: activeCategory !== 'all' ? { category: activeCategory } : {}
-    });
+    try {
+      const response = await axios.get(`${API_URL}/api/portfolio`, {
+        params: activeCategory !== 'all' ? { category: activeCategory } : {}
+      });
+      setPortfolio(response.data);
+    } catch (error) {
+      console.error('Error fetching portfolio:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-   console.log("API DATA:", response.data);  
-   
-    const data = Array.isArray(response.data)
-      ? response.data
-      : response.data?.data || [];
-
-    setPortfolio(
-      data.map(item => ({
-        ...item,
-        category:
-          typeof item.category === "object"
-            ? item.category.label
-            : item.category
-      }))
-    );
-
-  } catch (error) {
-    console.error('Error fetching portfolio:', error);
-  } finally {
-    setLoading(false);
-  }
-};
-
-  const safePortfolio = Array.isArray(portfolio) ? portfolio : [];
-
-const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)).map(item => ({
-  ...item,
-  title: typeof item.title === "string" ? item.title : "",
-  title_en: typeof item.title_en === "string" ? item.title_en : "",
-  description: typeof item.description === "string" ? item.description : "",
-  description_en: typeof item.description_en === "string" ? item.description_en : "",
-  category: typeof item.category === "object" ? item.category.label : item.category
-}));
+  const displayedPortfolio = showFull ? portfolio : portfolio.slice(0, 4);
 
   const openVideoModal = (item) => {
     setSelectedVideo(item);
@@ -81,17 +49,41 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
     document.body.style.overflow = 'auto';
   };
 
- return (
-  <section 
-    id="portfolio" 
-    className="py-24 md:py-32 bg-[#050505]"
-    data-testid="portfolio-section"
-  >
+  return (
+    <section 
+      id="portfolio" 
+      className="py-24 md:py-32 bg-[#050505]"
+      data-testid="portfolio-section"
+    >
+      <div className="container mx-auto px-6 md:px-12">
+        {/* Header - only show if not on dedicated page */}
+        {!showFull && (
+          <div className="text-center mb-12">
+            <span 
+              className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
+              data-testid="portfolio-badge"
+            >
+              {t('portfolio.badge')}
+            </span>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
+              data-testid="portfolio-title"
+            >
+              {t('portfolio.title')}
+            </h2>
+            <p 
+              className="text-zinc-400 max-w-2xl mx-auto"
+              data-testid="portfolio-subtitle"
+            >
+              {t('portfolio.subtitle')}
+            </p>
+          </div>
+        )}
 
-  {/* Categories Filter */}
+        {/* Categories Filter */}
         {showFull && (
           <div className="flex flex-wrap justify-center gap-4 mb-12" data-testid="portfolio-categories">
-            {categories||[].map((category) => (
+            {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
@@ -102,9 +94,7 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
                 }`}
                 data-testid={`portfolio-category-${category.id}`}
               >
-                {typeof category.label === "object"
-                ? category.label.label
-                : category.label}
+                {category.label}
               </button>
             ))}
           </div>
@@ -119,17 +109,17 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-testid="portfolio-grid">
-            {(displayedPortfolio || []).map((item, index) => (
+            {displayedPortfolio.map((item, index) => (
               <div
-                key={item.id || index}
+                key={item.id}
                 onClick={() => openVideoModal(item)}
                 className="group relative aspect-video overflow-hidden bg-zinc-950 border border-white/10 card-hover cursor-pointer"
                 data-testid={`portfolio-item-${index}`}
               >
                 {/* Thumbnail */}
                 <img
-                  src={item.thumbnail||""}
-                  alt={String((language === 'de' ? item.title : item.title_en)|| "")}
+                  src={item.thumbnail}
+                  alt={language === 'de' ? item.title : item.title_en}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
@@ -142,19 +132,18 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
 
                   {/* Title */}
                   <h3 className="text-xl font-medium text-white text-center mb-2">
-                    {String((language === 'de' ? item.title : item.title_en)||"")}
+                    {language === 'de' ? item.title : item.title_en}
                   </h3>
 
                   {/* Description */}
                   <p className="text-zinc-300 text-sm text-center max-w-xs">
-                    {String((language === 'de' ? item.description : item.description_en) || "")}
+                    {language === 'de' ? item.description : item.description_en}
                   </p>
                 </div>
 
                 {/* Category badge */}
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-xs uppercase tracking-wider text-zinc-300">
-                  {typeof item.category === "object"?
-                   item.category.label : item.category || ""}
+                  {item.category}
                 </div>
 
                 {/* Play icon always visible */}
@@ -174,7 +163,7 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
               className="btn-secondary inline-flex items-center space-x-2 group"
               data-testid="portfolio-view-all"
             >
-              <span>{String(t('portfolio.viewProject') || "")}</span>
+              <span>{t('portfolio.viewProject')}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -202,7 +191,7 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
           >
             {/* Video Title */}
             <h3 className="text-2xl font-medium text-white text-center mb-6">
-              {String((language === 'de' ? selectedVideo.title : selectedVideo.title_en) || "")}
+              {language === 'de' ? selectedVideo.title : selectedVideo.title_en}
             </h3>
 
             {/* Video Player */}
@@ -220,13 +209,13 @@ const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)
 
             {/* Video Description */}
             <p className="text-zinc-400 text-center mt-6 max-w-2xl mx-auto">
-              {String((language === 'de' ? selectedVideo.description : selectedVideo.description_en) || "")}
+              {language === 'de' ? selectedVideo.description : selectedVideo.description_en}
             </p>
           </div>
         </div>
       )}
     </section>
   );
-};      
+};
 
 export default PortfolioSection;
