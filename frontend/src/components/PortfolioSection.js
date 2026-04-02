@@ -9,23 +9,17 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 const PortfolioSection = ({ showFull = false }) => {
  const { language, t: originalT } = useLanguage();
 
-const t = (key) => {
-  const value = originalT(key);
-  if (typeof value === "object" && value !== null) {
-    return value.label || "";
-  }
-  return value || "";
-};
+const t = (key) => String(originalT(key) || "");
   const [portfolio, setPortfolio] = useState([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const categories = [
-    { id: 'all', label: t('portfolio.categories.all') },
-    { id: 'fitness', label: t('portfolio.categories.fitness') },
-    { id: 'business', label: t('portfolio.categories.business') },
-    { id: 'social-media', label: t('portfolio.categories.socialMedia') },
-  ];
+  { id: 'all', label: String(t('portfolio.categories.all') || "") },
+  { id: 'fitness', label: String(t('portfolio.categories.fitness') || "") },
+  { id: 'business', label: String(t('portfolio.categories.business') || "") },
+  { id: 'social-media', label: String(t('portfolio.categories.socialMedia') || "") },
+];
 
   useEffect(() => {
     fetchPortfolio();
@@ -135,7 +129,7 @@ const t = (key) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-testid="portfolio-grid">
             {(displayedPortfolio || []).map((item, index) => (
               <div
-                key={item.id}
+                key={item.id || index}
                 onClick={() => openVideoModal(item)}
                 className="group relative aspect-video overflow-hidden bg-zinc-950 border border-white/10 card-hover cursor-pointer"
                 data-testid={`portfolio-item-${index}`}
@@ -188,7 +182,7 @@ const t = (key) => {
               className="btn-secondary inline-flex items-center space-x-2 group"
               data-testid="portfolio-view-all"
             >
-              <span>{t('portfolio.viewProject')}</span>
+              <span>{String(t('portfolio.viewProject') || "")}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
