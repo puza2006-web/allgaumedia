@@ -9,15 +9,16 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 const PortfolioSection = ({ showFull = false }) => {
   const { language, t } = useLanguage();
   const [portfolio, setPortfolio] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [loading, setLoading] = useState(true);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
   useEffect(() => {
   setPortfolio([
     { id: 1, title: "Video 1" },
     { id: 2, title: "Video 2" },
   ]);
 }, []);
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [loading, setLoading] = useState(true);
-  const [selectedVideo, setSelectedVideo] = useState(null);
 
   const categories = [
     { id: 'all', label: t('portfolio.categories.all') },
