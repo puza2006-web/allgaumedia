@@ -94,7 +94,7 @@ const PortfolioSection = ({ showFull = false }) => {
                 }`}
                 data-testid={`portfolio-category-${category.id}`}
               >
-                {category.label}
+                {String(category.label||"")}
               </button>
             ))}
           </div>
@@ -118,7 +118,7 @@ const PortfolioSection = ({ showFull = false }) => {
               >
                 {/* Thumbnail */}
                 <img
-                  src={item.thumbnail}
+                  src={item.thumbnail||""}
                   alt={language === 'de' ? item.title : item.title_en}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
