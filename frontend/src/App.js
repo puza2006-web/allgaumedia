@@ -112,6 +112,7 @@ function App() {
                   <HostingPage />
                 </Layout>
               }
+           />
             <Route
               path="/portfolio"
               element={
