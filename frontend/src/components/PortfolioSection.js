@@ -12,7 +12,6 @@ const PortfolioSection = ({ showFull = false }) => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
-
   const categories = [
     { id: 'all', label: t('portfolio.categories.all') },
     { id: 'fitness', label: t('portfolio.categories.fitness') },
@@ -119,7 +118,7 @@ const PortfolioSection = ({ showFull = false }) => {
                 {/* Thumbnail */}
                 <img
                   src={item.thumbnail||""}
-                  alt={language === 'de' ? item.title : item.title_en}
+                  alt={String((language === 'de' ? item.title : item.title_en)|| ""}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
