@@ -34,7 +34,8 @@ const PortfolioSection = ({ showFull = false }) => {
   }, [activeCategory]);
 
   const fetchPortfolio = async () => {
-  try {
+  return; // STOP
+};
     setPortfolio([]); // privremeno prazno
   } catch (error) {
     console.error('Error fetching portfolio:', error);
