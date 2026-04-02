@@ -25,17 +25,14 @@ const PortfolioSection = ({ showFull = false }) => {
   }, [activeCategory]);
 
   const fetchPortfolio = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/portfolio`, {
-        params: activeCategory !== 'all' ? { category: activeCategory } : {}
-      });
-      setPortfolio(response.data);
-    } catch (error) {
-      console.error('Error fetching portfolio:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setPortfolio([]); // privremeno prazno
+  } catch (error) {
+    console.error('Error fetching portfolio:', error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const displayedPortfolio = showFull ? portfolio : portfolio.slice(0, 4);
 
