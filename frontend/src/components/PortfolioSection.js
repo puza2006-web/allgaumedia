@@ -36,7 +36,15 @@ const t = (key) => {
       const response = await axios.get(`${API_URL}/api/portfolio`, {
         params: activeCategory !== 'all' ? { category: activeCategory } : {}
       });
-      setPortfolio(response.data);
+      setPortfolio(
+  response.data.map(item => ({
+    ...item,
+    category:
+      typeof item.category === "object"
+        ? item.category.label
+        : item.category
+  }))
+);
     } catch (error) {
       console.error('Error fetching portfolio:', error);
     } finally {
