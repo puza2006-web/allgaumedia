@@ -9,6 +9,12 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 const PortfolioSection = ({ showFull = false }) => {
   const { language, t } = useLanguage();
   const [portfolio, setPortfolio] = useState([]);
+  useEffect(() => {
+  setPortfolio([
+    { id: 1, title: "Video 1" },
+    { id: 2, title: "Video 2" },
+  ]);
+}, []);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -51,7 +57,11 @@ const PortfolioSection = ({ showFull = false }) => {
     <h2>Portfolio</h2>
 
     <div>
-      <p>OVDJE CE ICI PROJEKTI</p>
+      {portfolio.map((item) => (
+        <div key={item.id}>
+          {item.title}
+        </div>
+      ))}
     </div>
   </section>
 );
