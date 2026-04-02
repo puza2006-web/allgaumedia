@@ -69,19 +69,19 @@ const PortfolioSection = ({ showFull = false }) => {
               className="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4 block"
               data-testid="portfolio-badge"
             >
-              {t('portfolio.badge')}
+             {String(t('portfolio.badge') || "")}
             </span>
             <h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4"
               data-testid="portfolio-title"
             >
-              {t('portfolio.title')}
+              {String(t('portfolio.title') || "")}
             </h2>
             <p 
               className="text-zinc-400 max-w-2xl mx-auto"
               data-testid="portfolio-subtitle"
             >
-              {t('portfolio.subtitle')}
+             {String(t('portfolio.subtitle') || "")}
             </p>
           </div>
         )}
