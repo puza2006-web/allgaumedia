@@ -142,7 +142,7 @@ const PortfolioSection = ({ showFull = false }) => {
 
                 {/* Category badge */}
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm text-xs uppercase tracking-wider text-zinc-300">
-                  {item.category}
+                  {String(item.category?.label || "")}
                 </div>
 
                 {/* Play icon always visible */}
