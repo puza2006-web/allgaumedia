@@ -116,7 +116,9 @@ const t = (key) => {
                 }`}
                 data-testid={`portfolio-category-${category.id}`}
               >
-                {String(category.label||"")}
+                {typeof category.label === "object"
+                ? category.label.label
+                : category.label}
               </button>
             ))}
           </div>
