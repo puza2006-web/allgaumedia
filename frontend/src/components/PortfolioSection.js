@@ -32,27 +32,37 @@ const t = (key) => {
   }, [activeCategory]);
 
   const fetchPortfolio = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/portfolio`, {
-        params: activeCategory !== 'all' ? { category: activeCategory } : {}
-      });
-      setPortfolio(
-  response.data.map(item => ({
-    ...item,
-    category:
-      typeof item.category === "object"
-        ? item.category.label
-        : item.category
-  }))
-);
-    } catch (error) {
-      console.error('Error fetching portfolio:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await axios.get(`${API_URL}/api/portfolio`, {
+      params: activeCategory !== 'all' ? { category: activeCategory } : {}
+    });
 
-  const displayedPortfolio = (showFull ? portfolio : portfolio.slice(0, 4)).map(item => ({
+   console.log("API DATA:", response.data);  
+   
+    const data = Array.isArray(response.data)
+      ? response.data
+      : response.data?.data || [];
+
+    setPortfolio(
+      data.map(item => ({
+        ...item,
+        category:
+          typeof item.category === "object"
+            ? item.category.label
+            : item.category
+      }))
+    );
+
+  } catch (error) {
+    console.error('Error fetching portfolio:', error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+  const safePortfolio = Array.isArray(portfolio) ? portfolio : [];
+
+const displayedPortfolio = (showFull ? safePortfolio : safePortfolio.slice(0, 4)).map(item => ({
   ...item,
   title: typeof item.title === "string" ? item.title : "",
   title_en: typeof item.title_en === "string" ? item.title_en : "",
