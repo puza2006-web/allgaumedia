@@ -120,7 +120,6 @@ function App() {
                  </Layout>
                 }
             />
-            />
             <Route
               path="/admin"
               element={
