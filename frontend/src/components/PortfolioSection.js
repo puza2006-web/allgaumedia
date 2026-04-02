@@ -83,7 +83,7 @@ const PortfolioSection = ({ showFull = false }) => {
         {/* Categories Filter */}
         {showFull && (
           <div className="flex flex-wrap justify-center gap-4 mb-12" data-testid="portfolio-categories">
-            {categories.map((category) => (
+            {categories||().map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
