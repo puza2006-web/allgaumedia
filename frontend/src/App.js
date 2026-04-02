@@ -112,11 +112,14 @@ function App() {
                   <HostingPage />
                 </Layout>
               }
+            <Route
+              path="/portfolio"
+              element={
+                <Layout>
+                 <PortfolioPage />
+                 </Layout>
+                }
             />
-           <Route
-             path="/portfolio"
-               element={<h1>PORTFOLIO TEST</h1>}
-             />
             />
             <Route
               path="/admin"
