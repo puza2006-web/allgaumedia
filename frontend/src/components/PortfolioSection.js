@@ -36,7 +36,14 @@ const PortfolioSection = ({ showFull = false }) => {
     }
   };
 
-  const displayedPortfolio = showFull ? portfolio : portfolio.slice(0, 4);
+  const displayedPortfolio = (showFull ? portfolio : portfolio.slice(0, 4)).map(item => ({
+  ...item,
+  title: typeof item.title === "string" ? item.title : "",
+  title_en: typeof item.title_en === "string" ? item.title_en : "",
+  description: typeof item.description === "string" ? item.description : "",
+  description_en: typeof item.description_en === "string" ? item.description_en : "",
+  category: typeof item.category === "object" ? item.category.label : item.category
+}));
 
   const openVideoModal = (item) => {
     setSelectedVideo(item);
