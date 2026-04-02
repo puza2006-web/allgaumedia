@@ -42,7 +42,7 @@ const PortfolioPage = () => {
         />
 
         {/* Portfolio with full grid and filters */}
-        <h1>PORTFOLIO RADI</h1>
+        <PortfolioSection showFull={true} />
 
         {/* Contact CTA */}
         <ContactSection />
