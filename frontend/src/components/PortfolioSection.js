@@ -56,14 +56,12 @@ const PortfolioSection = ({ showFull = false }) => {
   };
 
   return (
-  <section style={{ background: "red", padding: "100px" }}>
-    <h2 style={{ color: "white", fontSize: "40px" }}>
-      PORTFOLIO TEST
-    </h2>
+  <section className="py-20 bg-black text-white">
+    <h2 className="text-3xl text-center mb-10">Portfolio</h2>
 
-    <div style={{ color: "white" }}>
+    <div className="max-w-4xl mx-auto">
       {portfolio.map((item) => (
-        <div key={item.id}>
+        <div key={item.id} className="mb-4 p-4 border border-white">
           {item.title}
         </div>
       ))}
