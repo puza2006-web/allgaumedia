@@ -131,12 +131,12 @@ const PortfolioSection = ({ showFull = false }) => {
 
                   {/* Title */}
                   <h3 className="text-xl font-medium text-white text-center mb-2">
-                    {language === 'de' ? item.title : item.title_en}
+                    {String((language === 'de' ? item.title : item.title_en)||"")}
                   </h3>
 
                   {/* Description */}
                   <p className="text-zinc-300 text-sm text-center max-w-xs">
-                    {language === 'de' ? item.description : item.description_en}
+                    {String((language === 'de' ? item.description : item.description_en) || "")}
                   </p>
                 </div>
 
@@ -190,7 +190,7 @@ const PortfolioSection = ({ showFull = false }) => {
           >
             {/* Video Title */}
             <h3 className="text-2xl font-medium text-white text-center mb-6">
-              {language === 'de' ? selectedVideo.title : selectedVideo.title_en}
+              {String((language === 'de' ? selectedVideo.title : selectedVideo.title_en) || "")}
             </h3>
 
             {/* Video Player */}
@@ -208,7 +208,7 @@ const PortfolioSection = ({ showFull = false }) => {
 
             {/* Video Description */}
             <p className="text-zinc-400 text-center mt-6 max-w-2xl mx-auto">
-              {language === 'de' ? selectedVideo.description : selectedVideo.description_en}
+              {String((language === 'de' ? selectedVideo.description : selectedVideo.description_en) || "")}
             </p>
           </div>
         </div>
