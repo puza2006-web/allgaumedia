@@ -48,7 +48,11 @@ const PortfolioSection = ({ showFull = false }) => {
 
   return (
   <section>
-    <h1>PORTFOLIO SECTION RADI</h1>
+    <h2>Portfolio</h2>
+
+    <div>
+      <p>OVDJE CE ICI PROJEKTI</p>
+    </div>
   </section>
 );
 };
