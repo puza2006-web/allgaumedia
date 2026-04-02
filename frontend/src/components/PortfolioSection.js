@@ -14,6 +14,8 @@ const PortfolioSection = ({ showFull = false }) => {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
+  alert("USE EFFECT RADI");
+
   setPortfolio([
     { id: 1, title: "Video 1" },
     { id: 2, title: "Video 2" },
