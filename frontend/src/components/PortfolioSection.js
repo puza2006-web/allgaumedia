@@ -83,7 +83,7 @@ const PortfolioSection = ({ showFull = false }) => {
         {/* Categories Filter */}
         {showFull && (
           <div className="flex flex-wrap justify-center gap-4 mb-12" data-testid="portfolio-categories">
-            {categories||().map((category) => (
+            {categories||[].map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
@@ -109,7 +109,7 @@ const PortfolioSection = ({ showFull = false }) => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8" data-testid="portfolio-grid">
-            {displayedPortfolio||().map((item, index) => (
+            {displayedPortfolio||[].map((item, index) => (
               <div
                 key={item.id}
                 onClick={() => openVideoModal(item)}
