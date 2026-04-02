@@ -51,4 +51,5 @@ const PortfolioSection = ({ showFull = false }) => {
     <h1>PORTFOLIO SECTION RADI</h1>
   </section>
 );
+);
 export default PortfolioSection;
