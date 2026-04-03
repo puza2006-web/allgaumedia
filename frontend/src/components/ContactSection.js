@@ -3,8 +3,6 @@ import { MapPin, Phone, Mail, Send, CheckCircle } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL;
-
 const ContactSection = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
@@ -29,7 +27,7 @@ const ContactSection = () => {
     setSubmitStatus(null);
 
     try {
-      await axios.post(`${API_URL}/api/contact`, formData);
+      await axios.post('/api/contact', formData);
       setSubmitStatus('success');
       setFormData({
         name: '',
@@ -247,7 +245,7 @@ const ContactSection = () => {
               data-testid="contact-map"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.123!2d10.1366!3d48.0283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479c7e5b6b8b8b8b%3A0x1234567890abcdef!2sGoethestraße%2013a%2C%2087740%20Buxheim!5e0!3m2!1sde!2sde!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2673.123!2d10.1366!3d48.0283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479c7e5b6b8b8b8b%3A0x1234567890abcdef!2sGoethestra%C3%9Fe%2013a%2C%2087740%20Buxheim!5e0!3m2!1sde!2sde!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
