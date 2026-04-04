@@ -1,24 +1,46 @@
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 export default async function handler(req, res) {
   // Dozvoljavamo samo POST zahtjeve
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed!' });
   }
 
   // Podaci iz forme
   const { name, email, phone, company, service_interest, message } = req.body;
 
-  // Ispis u Vercel logove (vidjet ćete na vercel.com)
-  console.log('📩 Primljena poruka:');
-  console.log('Ime:', name);
-  console.log('Email:', email);
-  console.log('Telefon:', phone);
-  console.log('Firma:', company);
-  console.log('Usluga:', service_interest);
-  console.log('Poruka:', message);
+  // Provjera obaveznih polja
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Ime, email i poruka su obavezni!' });
+  }
 
-  // Vraćamo uspjeh
-  return res.status(200).json({ 
-    success: true, 
-    message: 'Forma je primljena' 
-  });
+  try {
+    // Slanje emaila na info@allgaumedia.de
+    const { data, error } = await resend.emails.send({
+      from: 'Kontakt forma <kontakt@allgaumedia.de>', // ISPRAVLJENO
+      to: ['info@allgaumedia.de'],
+      subject: `Nova poruka sa allgaumedia.de od ${name}`, // ISPRAVLJENO
+      html: `
+        <h2>Nova kontakt poruka</h2>
+        <p><strong>Ime:</strong> ${name}</p>
+        <p><strong>Email pošiljaoca:</strong> ${email}</p>
+        <p><strong>Telefon:</strong> ${phone || 'nije uneseno'}</p>
+        <p><strong>Firma:</strong> ${company || 'nije uneseno'}</p>
+        <p><strong>Usluga:</strong> ${service_interest || 'nije odabrano'}</p>
+        <p><strong>Poruka:</strong></p>
+        <p>${message}</p>
+        <hr />
+        <p><small>Odgovorite direktno na: ${email}</small></p>
+      `,
+    });
+
+    if (error) throw error;
+
+    return res.status(200).json({ success: true, message: 'Poruka poslana!' });
+  } catch (error) {
+    console.error('Greška pri slanju emaila:', error);
+    return res.status(500).json({ error: 'Greška pri slanju poruke' });
+  }
 }
