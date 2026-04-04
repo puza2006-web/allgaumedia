@@ -19,9 +19,10 @@ export default async function handler(req, res) {
   try {
     // Slanje emaila na info@allgaumedia.de
     const { data, error } = await resend.emails.send({
-      from: 'Kontakt forma <kontakt@allgaumedia.de>', // ISPRAVLJENO
+      from: 'Kontakt forma <kontakt@allgaumedia.de>',
       to: ['info@allgaumedia.de'],
-      subject: `Nova poruka sa allgaumedia.de od ${name}`, // ISPRAVLJENO
+      replyTo: email,
+      subject: `Nova poruka sa allgaumedia.de od ${name}`,
       html: `
         <h2>Nova kontakt poruka</h2>
         <p><strong>Ime:</strong> ${name}</p>
@@ -36,11 +37,14 @@ export default async function handler(req, res) {
       `,
     });
 
-    if (error) throw error;
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(500).json({ error: 'Greška pri slanju poruke!' });
+    }
 
     return res.status(200).json({ success: true, message: 'Poruka poslana!' });
   } catch (error) {
     console.error('Greška pri slanju emaila:', error);
-    return res.status(500).json({ error: 'Greška pri slanju poruke' });
+    return res.status(500).json({ error: 'Greška pri slanju poruke!' });
   }
 }
