@@ -201,7 +201,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="text-white font-medium mb-1">{t('contact.info.address')}</h4>
                   <p className="text-zinc-400">
-                    Allgau Media<br />
+                    Allgau Media - Sladjana Puzigaca<br />
                     Goethestraße 13a<br />
                     87740 Buxheim
                   </p>
@@ -253,7 +253,7 @@ const ContactSection = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Allgau Media Location"
-                className="grayscale"
+                className=""
               />
             </div>
           </div>
