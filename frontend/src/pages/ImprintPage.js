@@ -24,7 +24,7 @@ const ImprintPage = () => {
                 {language === 'de' ? 'Angaben gemäß § 5 TMG' : 'Information according to § 5 TMG'}
               </h2>
               <p>
-                Allgau Media<br />
+                Allgau Media - Sladjana Puzigaca<br />
                 Goethestraße 13a<br />
                 87740 Buxheim
               </p>
@@ -45,6 +45,7 @@ const ImprintPage = () => {
                 {language === 'de' ? 'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV' : 'Responsible for content according to § 55 Abs. 2 RStV'}
               </h2>
               <p>
+                Sladjana Puzigaca<br />
                 Allgau Media<br />
                 Goethestraße 13a<br />
                 87740 Buxheim
