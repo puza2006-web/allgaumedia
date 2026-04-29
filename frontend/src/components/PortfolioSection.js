@@ -15,7 +15,7 @@ const PortfolioSection = ({ showFull = false }) => {
       id: 1,
       title: "Apollo Gym",
       description: "Videoproduktion Allgäu",
-      category: "Fitness",
+      category: "fitness",
       youtubeId: "riTnD55ERzw",
     },
   ];
