@@ -13,10 +13,10 @@ const PortfolioSection = ({ showFull = false }) => {
   const portfolio = [
     {
       id: 1,
-      title: "Showreel 2026",
+      title: "Apollo Gym",
       description: "Videoproduktion Allgäu",
-      category: "business",
-      youtubeId: "OVDJE_TVOJ_VIDEO_ID",
+      category: "Fitness",
+      youtubeId: "riTnD55ERzw",
     },
   ];
 
